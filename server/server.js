@@ -1,12 +1,15 @@
-const express = require('express')
-const cors = require("cors")
-const apiRouter = require("./routes")
-let app = express()
+const express = require('express');
+const app = express();
+const apiRouter = require("./routes");
 
 
-app.use(cors()); 
-app.use(express.json()); 
+app.use(express.json());
 
-app.use("/api", apiRouter)
 
-app.listen(3000)
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api", apiRouter);
+
+app.use(express.static("client"));
+
+app.listen(3000);
